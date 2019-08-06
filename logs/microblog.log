@@ -1,0 +1,78 @@
+2019-08-01 22:55:35,104 INFO: Microblog startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\microblog\app\__init__.py:45]
+2019-08-01 22:55:40,307 INFO: Microblog startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\microblog\app\__init__.py:45]
+2019-08-01 23:05:58,492 INFO: Microblog startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\microblog\app\__init__.py:45]
+2019-08-03 12:34:57,711 INFO: Microblog startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\microblog\app\__init__.py:45]
+2019-08-03 20:44:09,114 INFO: Microblog startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\microblog\app\__init__.py:45]
+2019-08-03 20:46:11,157 INFO: Microblog startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\microblog\app\__init__.py:45]
+2019-08-03 22:50:21,632 INFO: Microblog startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\microblog\app\__init__.py:45]
+2019-08-03 23:11:32,904 INFO: Microblog startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\microblog\app\__init__.py:45]
+2019-08-05 12:51:27,303 INFO: Microblog startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\microblog\app\__init__.py:49]
+2019-08-05 12:52:29,378 INFO: Microblog startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\microblog\app\__init__.py:49]
+2019-08-05 12:53:00,482 INFO: Microblog startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\microblog\app\__init__.py:49]
+2019-08-05 12:54:47,389 INFO: Microblog startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\microblog\app\__init__.py:49]
+2019-08-05 13:05:47,945 INFO: Microblog startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\microblog\app\__init__.py:49]
+2019-08-05 12:16:55,714 INFO: Microblog startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\microblog\app\__init__.py:51]
+2019-08-05 12:16:59,189 ERROR: Exception on /index [GET] [in c:\users\bkettle\onedrive\documents\development\proj\microblog\venv\lib\site-packages\flask\app.py:1780]
+Traceback (most recent call last):
+  File "c:\users\bkettle\onedrive\documents\development\proj\microblog\venv\lib\site-packages\flask\app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\bkettle\onedrive\documents\development\proj\microblog\venv\lib\site-packages\flask\app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\bkettle\onedrive\documents\development\proj\microblog\venv\lib\site-packages\flask\app.py", line 1737, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\bkettle\onedrive\documents\development\proj\microblog\venv\lib\site-packages\flask\_compat.py", line 36, in reraise
+    raise value
+  File "c:\users\bkettle\onedrive\documents\development\proj\microblog\venv\lib\site-packages\flask\app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\bkettle\onedrive\documents\development\proj\microblog\venv\lib\site-packages\flask\app.py", line 1818, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\users\bkettle\onedrive\documents\development\proj\microblog\venv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\bkettle\OneDrive\Documents\development\proj\microblog\app\routes.py", line 37, in index
+    prev_url=prev_url)
+  File "c:\users\bkettle\onedrive\documents\development\proj\microblog\venv\lib\site-packages\flask\templating.py", line 135, in render_template
+    context, ctx.app)
+  File "c:\users\bkettle\onedrive\documents\development\proj\microblog\venv\lib\site-packages\flask\templating.py", line 117, in _render
+    rv = template.render(context)
+  File "c:\users\bkettle\onedrive\documents\development\proj\microblog\venv\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "c:\users\bkettle\onedrive\documents\development\proj\microblog\venv\lib\site-packages\jinja2\environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "c:\users\bkettle\onedrive\documents\development\proj\microblog\venv\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\bkettle\onedrive\documents\development\proj\microblog\venv\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\bkettle\OneDrive\Documents\development\proj\microblog\app\templates\base.html", line 55, in template
+    {% endblock %}
+  File "c:\users\bkettle\onedrive\documents\development\proj\microblog\venv\lib\site-packages\jinja2\environment.py", line 1005, in render
+    return concat(self.root_render_func(self.new_context(vars)))
+  File "C:\Users\bkettle\OneDrive\Documents\development\proj\microblog\app\templates\index.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "c:\users\bkettle\onedrive\documents\development\proj\microblog\venv\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\bkettle\onedrive\documents\development\proj\microblog\venv\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\bkettle\OneDrive\Documents\development\proj\microblog\app\templates\base.html", line 55, in template
+    {% endblock %}
+  File "c:\users\bkettle\onedrive\documents\development\proj\microblog\venv\lib\site-packages\jinja2\environment.py", line 497, in _parse
+    return Parser(self, source, name, encode_filename(filename)).parse()
+  File "c:\users\bkettle\onedrive\documents\development\proj\microblog\venv\lib\site-packages\jinja2\parser.py", line 901, in parse
+    result = nodes.Template(self.subparse(), lineno=1)
+  File "c:\users\bkettle\onedrive\documents\development\proj\microblog\venv\lib\site-packages\jinja2\parser.py", line 883, in subparse
+    rv = self.parse_statement()
+  File "c:\users\bkettle\onedrive\documents\development\proj\microblog\venv\lib\site-packages\jinja2\parser.py", line 130, in parse_statement
+    return getattr(self, 'parse_' + self.stream.current.value)()
+  File "c:\users\bkettle\onedrive\documents\development\proj\microblog\venv\lib\site-packages\jinja2\parser.py", line 268, in parse_block
+    node.body = self.parse_statements(('name:endblock',), drop_needle=True)
+  File "c:\users\bkettle\onedrive\documents\development\proj\microblog\venv\lib\site-packages\jinja2\parser.py", line 170, in parse_statements
+    self.fail_eof(end_tokens)
+  File "c:\users\bkettle\onedrive\documents\development\proj\microblog\venv\lib\site-packages\jinja2\parser.py", line 104, in fail_eof
+    return self._fail_ut_eof(None, stack, lineno)
+  File "c:\users\bkettle\onedrive\documents\development\proj\microblog\venv\lib\site-packages\jinja2\parser.py", line 90, in _fail_ut_eof
+    self.fail(' '.join(message), lineno)
+  File "c:\users\bkettle\onedrive\documents\development\proj\microblog\venv\lib\site-packages\jinja2\parser.py", line 59, in fail
+    raise exc(msg, lineno, self.name, self.filename)
+jinja2.exceptions.TemplateSyntaxError: Unexpected end of template. Jinja was looking for the following tags: 'endblock'. The innermost block that needs to be closed is 'block'.
+2019-08-05 12:19:30,447 INFO: Microblog startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\microblog\app\__init__.py:51]
+2019-08-05 12:48:32,338 INFO: Microblog startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\microblog\app\__init__.py:51]
+2019-08-05 12:48:39,622 INFO: Microblog startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\microblog\app\__init__.py:51]
