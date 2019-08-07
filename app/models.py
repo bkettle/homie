@@ -19,15 +19,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
-    posts = db.relationship('Post', backref='author', lazy='dynamic')
-    about_me = db.Column(db.String(140))
-    last_seen = db.Column(db.DateTime, default=datetime.utcnow)
-
-    followed = db.relationship(
-        'User', secondary=followers,
-        primaryjoin=(followers.c.follower_id == id),
-        secondaryjoin=(followers.c.followed_id == id),
-        backref=db.backref('followers', lazy='dynamic'), lazy='dynamic')
+    homes = db.relationship('Home', backref='owner', lazy='dynamic')
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
@@ -38,25 +30,6 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
-    def follow(self, user):
-        if not self.is_following(user):
-            self.followed.append(user)
-
-    def unfollow(self, user):
-        if self.is_following(user):
-            self.followed.remove(user)
-
-    def is_following(self, user):
-        return self.followed.filter(
-            followers.c.followed_id == user.id).count() > 0
-
-    def followed_posts(self):
-        followed = Post.query.join(
-            followers, (followers.c.followed_id == Post.user_id)).filter(
-                followers.c.follower_id == self.id)
-        own = Post.query.filter_by(user_id=self.id)
-        return followed.union(own).order_by(Post.timestamp.desc())
-
     def avatar(self, size):
         digest = md5(self.email.lower().encode('utf-8')).hexdigest()
         return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(
@@ -66,19 +39,6 @@ class User(UserMixin, db.Model):
         return jwt.encode(
             {'reset_password': self.id, 'exp': time() + expires_in},
             app.config['SECRET_KEY'], algorithm='HS256').decode('utf-8')
-
-    messages_sent = db.relationship('Message',
-                                    foreign_keys='Message.sender_id',
-                                    backref='author', lazy='dynamic')
-    messages_received = db.relationship('Message',
-                                        foreign_keys='Message.recipient_id',
-                                        backref='recipient', lazy='dynamic')
-    last_message_read_time = db.Column(db.DateTime)
-
-    def new_messages(self):
-        last_read_time = self.last_message_read_time or datetime(1900, 1, 1)
-        return Message.query.filter_by(recipient=self).filter(
-            Message.timestamp > last_read_time).count()
 
     @staticmethod
     def verify_reset_password_token(token):
@@ -91,12 +51,32 @@ class User(UserMixin, db.Model):
 
 class Home(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    body = db.Column(db.String(140))
-    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    name = db.Column(db.String(140))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    devices = db.relationship('Device', backref='home', lazy='dynamic')
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)
 
 class Device(db.Model):
-    
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(140))
+    home_id = db.Column(db.Integer, db.ForeignKey('home.id'))
+    data = db.relationship('DataPoint', backref='device', lazy='dynamic')
+    categories = db.relationship('Category', backref='device', lazy='dynamic')
+
+class Category(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(140))
+    device_id = db.Column(db.Integer, db.ForeignKey('device.id'))
+    lower_bound = db.Column(db.Integer)
+    upper_bound = db.Column(db.Integer)
+    color = db.Column(db.String(6))
+    alert = db.Column(db.Boolean)
+
+class DataPoint(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    device_id = db.Column(db.Integer, db.ForeignKey('device.id'))
+    type = db.Column(db.Integer) #temp is type 0, water type 1
+    value = db.Column(db.Integer)
