@@ -1,0 +1,12 @@
+<table class="table table-hover">
+        <tr>
+            <td width="70px">
+                <a href="{{ url_for('home', home_url=home.url) }}">
+                    <img src="{{ home.owner.avatar(70) }}" />
+                </a>
+            </td>
+            <td>
+                {{ home.name }}
+            </td>
+        </tr>
+    </table>

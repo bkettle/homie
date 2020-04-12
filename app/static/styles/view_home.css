@@ -1,0 +1,30 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-content: stretch;
+    height: 100%;
+}
+
+.databox {
+    float: left;
+    background-color: lightblue;
+    padding: 10px 20px;
+    margin: 10px;
+    text-align: center;
+    flex: 1 1 300px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: flex-grow .5s;
+}
+
+.databox:hover {
+    flex-grow: 1.05;
+}

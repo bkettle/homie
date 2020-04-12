@@ -1,0 +1,110 @@
+2019-08-07 20:29:40,171 ERROR: Exception on /add_device [POST] [in c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py:1780]
+Traceback (most recent call last):
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\sqlalchemy\engine\default.py", line 550, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.InterfaceError: Error binding parameter 0 - probably unsupported type.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1737, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\_compat.py", line 36, in reraise
+    raise value
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1818, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\bkettle\onedrive\documents\development\proj\homie\app\routes.py", line 100, in add_device
+    if form.validate_on_submit():
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask_wtf\form.py", line 101, in validate_on_submit
+    return self.is_submitted() and self.validate()
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\wtforms\form.py", line 310, in validate
+    return super(Form, self).validate(extra)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\wtforms\form.py", line 152, in validate
+    if not field.validate(self, extra):
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\wtforms\fields\core.py", line 206, in validate
+    stop_validation = self._run_validation_chain(form, chain)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\wtforms\fields\core.py", line 226, in _run_validation_chain
+    validator(form, self)
+  File "C:\Users\bkettle\onedrive\documents\development\proj\homie\app\forms.py", line 91, in validate_device_id
+    device = Device.query.filter_by(id=device_id).first()
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3222, in first
+    ret = list(self[0:1])
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3012, in __getitem__
+    return list(res)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3324, in __iter__
+    return self._execute_and_instances(context)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3349, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\sqlalchemy\engine\base.py", line 988, in execute
+    return meth(self, multiparams, params)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\sqlalchemy\sql\elements.py", line 287, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1107, in _execute_clauseelement
+    distilled_params,
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1248, in _execute_context
+    e, statement, parameters, cursor, context
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1466, in _handle_dbapi_exception
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\sqlalchemy\util\compat.py", line 399, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\sqlalchemy\util\compat.py", line 153, in reraise
+    raise value.with_traceback(tb)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\sqlalchemy\engine\default.py", line 550, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.InterfaceError: (sqlite3.InterfaceError) Error binding parameter 0 - probably unsupported type.
+[SQL: SELECT device.id AS device_id, device.name AS device_name, device.home_id AS device_home_id 
+FROM device 
+WHERE device.id = ?
+ LIMIT ? OFFSET ?]
+[parameters: (<wtforms.fields.core.StringField object at 0x0000028CC183B5F8>, 1, 0)]
+(Background on this error at: http://sqlalche.me/e/rvf5)
+2019-08-07 20:38:07,733 INFO: Homie startup [in C:\Users\bkettle\onedrive\documents\development\proj\homie\app\__init__.py:51]
+2019-08-07 20:38:28,704 ERROR: Exception on /device/1 [GET] [in c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py:1780]
+Traceback (most recent call last):
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1737, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\_compat.py", line 36, in reraise
+    raise value
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1818, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+TypeError: device() got an unexpected keyword argument 'device_id'
+2019-08-07 20:42:21,635 INFO: Homie startup [in C:\Users\bkettle\onedrive\documents\development\proj\homie\app\__init__.py:51]
+2019-08-07 20:42:30,499 ERROR: Exception on /device/1 [GET] [in c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py:1780]
+Traceback (most recent call last):
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1737, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\_compat.py", line 36, in reraise
+    raise value
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1818, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\bkettle\onedrive\documents\development\proj\homie\app\routes.py", line 141, in device
+    abort(401)
+NameError: name 'abort' is not defined
+2019-08-07 20:43:06,713 INFO: Homie startup [in C:\Users\bkettle\onedrive\documents\development\proj\homie\app\__init__.py:51]
+2019-08-07 20:43:53,657 INFO: Homie startup [in C:\Users\bkettle\onedrive\documents\development\proj\homie\app\__init__.py:51]

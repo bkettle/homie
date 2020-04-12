@@ -1,0 +1,100 @@
+2019-08-07 21:54:22,266 ERROR: Exception on /add_device [GET] [in c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py:1780]
+Traceback (most recent call last):
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1737, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\_compat.py", line 36, in reraise
+    raise value
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1818, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\bkettle\onedrive\documents\development\proj\homie\app\routes.py", line 109, in add_device
+    return render_template('add_device.html', title='Add a Device', form=form)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\templating.py", line 135, in render_template
+    context, ctx.app)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\templating.py", line 117, in _render
+    rv = template.render(context)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\jinja2\environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\bkettle\onedrive\documents\development\proj\homie\app\templates\add_device.html", line 2, in top-level template code
+    {% import 'bootstrap/wtf.html' as wtf %}
+  File "C:\Users\bkettle\onedrive\documents\development\proj\homie\app\templates\base.html", line 2, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 4, in block "doc"
+    {%- block html %}
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 20, in block "html"
+    {% block body -%}
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 23, in block "body"
+    {% block content -%}
+  File "C:\Users\bkettle\onedrive\documents\development\proj\homie\app\templates\base.html", line 43, in block "content"
+    {% block app_content %}{% endblock %}
+  File "C:\Users\bkettle\onedrive\documents\development\proj\homie\app\templates\add_device.html", line 12, in block "app_content"
+    {{ c.form.category_name }}
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\jinja2\environment.py", line 430, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'str object' has no attribute 'form'
+2019-08-07 21:56:11,689 INFO: Homie startup [in C:\Users\bkettle\onedrive\documents\development\proj\homie\app\__init__.py:51]
+2019-08-07 21:57:39,678 INFO: Homie startup [in C:\Users\bkettle\onedrive\documents\development\proj\homie\app\__init__.py:51]
+2019-08-14 19:41:52,273 INFO: Homie startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\homie\app\__init__.py:51]
+2019-08-14 19:44:01,916 INFO: Homie startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\homie\app\__init__.py:51]
+2019-08-14 19:45:38,466 INFO: Homie startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\homie\app\__init__.py:51]
+2019-08-14 19:53:57,267 INFO: Homie startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\homie\app\__init__.py:51]
+2019-08-14 19:55:52,084 INFO: Homie startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\homie\app\__init__.py:51]
+2019-08-14 19:57:26,939 INFO: Homie startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\homie\app\__init__.py:51]
+2019-08-14 19:57:58,072 INFO: Homie startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\homie\app\__init__.py:51]
+2019-08-14 19:58:48,577 INFO: Homie startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\homie\app\__init__.py:51]
+2019-08-14 20:00:44,892 INFO: Homie startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\homie\app\__init__.py:51]
+2019-08-14 20:06:26,665 INFO: Homie startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\homie\app\__init__.py:51]
+2019-08-14 20:11:55,785 INFO: Homie startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\homie\app\__init__.py:51]
+2019-08-14 20:15:14,921 INFO: Homie startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\homie\app\__init__.py:51]
+2019-08-14 20:15:19,955 INFO: Homie startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\homie\app\__init__.py:51]
+2019-08-14 20:15:24,216 ERROR: Exception on /home/bobshouse [GET] [in c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py:1780]
+Traceback (most recent call last):
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1737, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\_compat.py", line 36, in reraise
+    raise value
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1818, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\bkettle\OneDrive\Documents\development\proj\homie\app\routes.py", line 134, in home
+    return render_template('view_home.html', user=current_user, current_home=current_home, devices=devices)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\templating.py", line 135, in render_template
+    context, ctx.app)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\templating.py", line 117, in _render
+    rv = template.render(context)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\jinja2\environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\bkettle\OneDrive\Documents\development\proj\homie\app\templates\view_home.html", line 12, in top-level template code
+    {% include '_device.html' %}
+  File "C:\Users\bkettle\OneDrive\Documents\development\proj\homie\app\templates\_device.html", line 4, in top-level template code
+    <h2 class="last-value">{{ device.get_last_value().format() }}</h2><br>
+jinja2.exceptions.UndefinedError: 'None' has no attribute 'format'
+2019-08-14 20:15:48,536 INFO: Homie startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\homie\app\__init__.py:51]
+2019-08-14 20:17:08,425 INFO: Homie startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\homie\app\__init__.py:51]
+2019-08-14 20:17:31,366 INFO: Homie startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\homie\app\__init__.py:51]

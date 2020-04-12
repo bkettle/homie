@@ -1,0 +1,15 @@
+<table class="table table-hover">
+    <a href="{{ url_for('device', device_id=device.id) }}">
+        <tr>
+            <td>
+                {{ device.name }}
+            </td>
+            <td>
+                {{ device.get_last_value().format() }}
+            </td>
+            <td>
+                {{ moment(device.get_last_value().timestamp).fromNow() }}
+            </td>
+        </tr>
+    </a>
+    </table>

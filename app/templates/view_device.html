@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block styles %}
+    {{super()}}
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/view_device.css') }}">
+{% endblock %}
+
+{% block app_content %}
+    <div class="main-container">
+        <div class="device-overview">
+            <h1>{{ current_device.name }}</h1>
+            <h2>{{ current_device.get_last_value().format() }}</h2>
+            <h3>{{ moment(current_device.get_last_value().timestamp).fromNow() }}</h3>
+        </div>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js" integrity="sha256-TQq84xX6vkwR0Qs1qH5ADkP+MvH0W+9E7TdHJsoIQiM=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@0.7.4"></script>
+    
+        <div class="chart-container">
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [{% for item in labels %}
+                        "{{item}}",
+                    {% endfor %}],
+            datasets: [{
+                label: 'Temperature in F',
+                data: [{% for item in values %}
+                            "{{item}}",
+                        {% endfor %}],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                ],
+                borderWidth: 1,
+                lineTension: 0,
+            }]
+        },
+        options: {
+            responsive: true,
+            aspectRatio: 1.3,
+            scales: {
+                xAxes: [{
+                    type: 'time',
+                }],
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            plugins: {
+                zoom: {
+                    // Container for pan options
+                    pan: {
+                        // Boolean to enable panning
+                        enabled: true,
+            
+                        // allowed pan directions
+                        mode: 'x',
+            
+                        rangeMin: {
+                            // Format of min pan range depends on scale type
+                            x: null,
+                            y: null
+                        },
+                        rangeMax: {
+                            // Format of max pan range depends on scale type
+                            x: null,
+                            y: null
+                        },
+            
+                        // On category scale, factor of pan velocity
+                        speed: 20,
+            
+                        // Minimal pan distance required before actually applying pan
+                        threshold: 10,
+            
+                        // Function called while the user is panning
+                        onPan: function({chart}) { console.log(`I'm panning!!!`); },
+                        // Function called once panning is completed
+                        onPanComplete: function({chart}) { console.log(`I was panned!!!`); }
+                    },
+            
+                    // Container for zoom options
+                    zoom: {
+                        // Boolean to enable zooming
+                        enabled: true,
+            
+                        // Enable drag-to-zoom behavior
+                        drag: false,
+                        
+                        // allowed zoom direction
+                        mode: 'x',
+            
+                        rangeMin: {
+                            // Format of min zoom range depends on scale type
+                            x: null,
+                            y: null
+                        },
+                        rangeMax: {
+                            // Format of max zoom range depends on scale type
+                            x: null,
+                            y: null
+                        },
+            
+                        // Speed of zoom via mouse wheel
+                        // (percentage of zoom on a wheel event)
+                        speed: 0.1,
+            
+                        // On category scale, minimal zoom level before actually applying zoom
+                        sensitivity: 3,
+            
+                        // Function called while the user is zooming
+                        onZoom: function({chart}) { console.log(`I'm zooming!!!`); },
+                        // Function called once zooming is completed
+                        onZoomComplete: function({chart}) { console.log(`I was zoomed!!!`); }
+                    }
+                }
+            }
+        }
+    });
+    </script>
+{% endblock %}

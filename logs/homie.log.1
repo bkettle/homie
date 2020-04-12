@@ -1,0 +1,98 @@
+2019-08-14 20:17:33,154 ERROR: Exception on /home/bobshouse [GET] [in c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py:1780]
+Traceback (most recent call last):
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1737, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\_compat.py", line 36, in reraise
+    raise value
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1818, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\bkettle\OneDrive\Documents\development\proj\homie\app\routes.py", line 134, in home
+    return render_template('view_home.html', user=current_user, current_home=current_home, devices=devices)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\templating.py", line 135, in render_template
+    context, ctx.app)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\templating.py", line 117, in _render
+    rv = template.render(context)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\jinja2\environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\bkettle\OneDrive\Documents\development\proj\homie\app\templates\view_home.html", line 12, in top-level template code
+    {% include '_device.html' %}
+  File "C:\Users\bkettle\OneDrive\Documents\development\proj\homie\app\templates\_device.html", line 4, in top-level template code
+    <h2 class="last-value">{{ device.get_last_value().format() }}</h2><br>
+jinja2.exceptions.UndefinedError: 'None' has no attribute 'format'
+2019-08-14 20:19:27,113 INFO: Homie startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\homie\app\__init__.py:51]
+2019-08-14 20:21:20,688 INFO: Homie startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\homie\app\__init__.py:51]
+2019-08-14 20:22:26,516 INFO: Homie startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\homie\app\__init__.py:51]
+2019-08-25 14:56:06,752 INFO: Homie startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\homie\app\__init__.py:51]
+2020-03-18 20:03:58,328 INFO: Homie startup [in C:\Users\bkettle\OneDrive\Documents\development\proj\homie\app\__init__.py:51]
+2020-04-11 17:20:13,316 INFO: Homie startup [in C:\Users\bkettle\OneDrive\development\proj\homie\app\__init__.py:51]
+2020-04-11 17:20:43,368 ERROR: Exception on /device/1 [GET] [in c:\users\bkettle\onedrive\development\proj\homie\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\users\bkettle\onedrive\development\proj\homie\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\bkettle\onedrive\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\bkettle\onedrive\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\bkettle\onedrive\development\proj\homie\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\bkettle\onedrive\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\bkettle\onedrive\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\users\bkettle\onedrive\development\proj\homie\venv\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\bkettle\OneDrive\development\proj\homie\app\routes.py", line 154, in device
+    return render_template('view_device.html', user=current_user, current_device=current_device, title='Bitcoin Monthly Price in USD', max=17000, labels=line_labels, values=line_values)
+NameError: name 'line_labels' is not defined
+2020-04-11 17:20:54,195 ERROR: Exception on /device/2 [GET] [in c:\users\bkettle\onedrive\development\proj\homie\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\users\bkettle\onedrive\development\proj\homie\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\bkettle\onedrive\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\bkettle\onedrive\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\bkettle\onedrive\development\proj\homie\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\bkettle\onedrive\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\bkettle\onedrive\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\users\bkettle\onedrive\development\proj\homie\venv\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\bkettle\OneDrive\development\proj\homie\app\routes.py", line 154, in device
+    return render_template('view_device.html', user=current_user, current_device=current_device, title='Bitcoin Monthly Price in USD', max=17000, labels=line_labels, values=line_values)
+NameError: name 'line_labels' is not defined
+2020-04-11 17:20:57,072 ERROR: Exception on /device/1 [GET] [in c:\users\bkettle\onedrive\development\proj\homie\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\users\bkettle\onedrive\development\proj\homie\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\bkettle\onedrive\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\bkettle\onedrive\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\bkettle\onedrive\development\proj\homie\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\bkettle\onedrive\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\bkettle\onedrive\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\users\bkettle\onedrive\development\proj\homie\venv\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\bkettle\OneDrive\development\proj\homie\app\routes.py", line 154, in device
+    return render_template('view_device.html', user=current_user, current_device=current_device, title='Bitcoin Monthly Price in USD', max=17000, labels=line_labels, values=line_values)
+NameError: name 'line_labels' is not defined

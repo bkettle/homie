@@ -1,0 +1,7 @@
+<a class="databox" href="{{ url_for('device', device_id=device.id) }}">
+    <div class="data-wrapper">
+        <h1 class="device-name">{{ device.name }}</h1><br>
+        <h2 class="last-value">{{ device.get_last_value().format() }}</h2><br>
+        <p class="time">{{ moment(device.get_last_value().timestamp).fromNow() }}</p>
+    </div>
+</a>

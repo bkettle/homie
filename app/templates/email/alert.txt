@@ -1,0 +1,6 @@
+{{ user.username }},
+
+The latest reading from your {{ datapoint.device.name }} sensor, {{ str(datapoint) }} fell into the {{ category.name }} category, which you've set up alerts for.
+
+Thanks,
+Homie Team

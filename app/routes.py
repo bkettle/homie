@@ -1,34 +1,18 @@
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, abort
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 from datetime import datetime
 from app import app, db
-from app.forms import LoginForm, RegistrationForm, EditProfileForm, PostForm
-from app.models import User, Post, Message
-from app.forms import ResetPasswordRequestForm, ResetPasswordForm, MessageForm
+from app.forms import LoginForm, RegistrationForm
+from app.forms import ResetPasswordRequestForm, ResetPasswordForm, CreateHomeForm, AddDeviceForm
 from app.email import send_password_reset_email
+from app.models import User, Home, Device, DataPoint
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
-    form = PostForm()
-    if form.validate_on_submit():
-        post = Post(body=form.post.data, author=current_user)
-        db.session.add(post)
-        db.session.commit()
-        flash('Your post is now live!')
-        return redirect(url_for('index'))
-    page = request.args.get('page', 1, type=int)
-    posts = current_user.followed_posts().paginate(
-        page, app.config['POSTS_PER_PAGE'], False)
-    next_url = url_for('index', page=posts.next_num) \
-        if posts.has_next else None
-    prev_url = url_for('index', page=posts.prev_num) \
-        if posts.has_prev else None
-    return render_template('index.html', title='Home', form=form,
-                           posts=posts.items, next_url=next_url,
-                           prev_url=prev_url)
+    return render_template('index.html', title='Home')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -66,36 +50,6 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
-@app.route('/user/<username>')
-@login_required
-def user(username):
-    user = User.query.filter_by(username=username).first_or_404()
-    page = request.args.get('page', 1, type=int)
-    posts = user.posts.order_by(Post.timestamp.desc()).paginate(
-        page, app.config['POSTS_PER_PAGE'], False)
-    next_url = url_for('user', username=user.username, page=posts.next_num) \
-        if posts.has_next else None
-    prev_url = url_for('user', username=user.username, page=posts.prev_num) \
-        if posts.has_prev else None
-    return render_template('user.html', user=user, posts=posts.items,
-                           next_url=next_url, prev_url=prev_url)
-
-@app.route('/edit_profile', methods=['GET', 'POST'])
-@login_required
-def edit_profile():
-    form = EditProfileForm(current_user.username)
-    if form.validate_on_submit():
-        current_user.username = form.username.data
-        current_user.about_me = form.about_me.data
-        db.session.commit()
-        flash('Your changes have been saved.')
-        return redirect(url_for('edit_profile'))
-    elif request.method == 'GET':
-        form.username.data = current_user.username
-        form.about_me.data = current_user.about_me
-    return render_template('edit_profile.html', title='Edit Profile',
-                           form=form)
-
 @app.route('/reset_password_request', methods=['GET', 'POST'])
 def reset_password_request():
     if current_user.is_authenticated:
@@ -124,3 +78,80 @@ def reset_password(token):
         flash('Your password has been reset.')
         return redirect(url_for('login'))
     return render_template('reset_password.html', form=form)
+
+@login_required
+@app.route('/create_home', methods=['GET', 'POST'])
+def create_home():
+    form = CreateHomeForm(current_user=current_user)
+    form.is_public.data = True
+    if form.validate_on_submit():
+        home = Home(owner=current_user, name=form.name.data, public=form.is_public.data, url=form.url)
+        db.session.add(home)
+        db.session.commit()
+        flash('Your home has been added')
+        return redirect(url_for('dashboard'))
+    return render_template('create_home.html', title='Create a Home', form=form)
+
+@login_required
+@app.route('/add_device', methods=['GET', 'POST'])
+def add_device():
+    form = AddDeviceForm()
+    form.home.choices = [(h.id, h.name) for h in Home.query.filter_by(owner=current_user)]
+    if form.validate_on_submit():
+        home = Home.query.filter_by(owner=current_user).filter_by(id=form.home.data).first()
+        device = Device.query.filter_by(id=form.device_id).first()
+        device.name = form.device_name.data
+        device.home = home
+        # go through each category and add those here too. Too much work for now.
+        db.session.commit()
+        flash('Your device has been added')
+        return redirect(url_for('dashboard'))
+    return render_template('add_device.html', title='Add a Device', form=form)
+
+@app.route('/upload/<device_id>', methods=['POST'])
+def upload_datapoint(device_id):
+    device = Device.query.filter_by(id=device_id).first()
+    value = request.args.get('value')
+    datatype = request.args.get('datatype')
+    dp = DataPoint(device=device, value=value, datatype=datatype)
+    db.session.add(dp)
+    db.session.commit()
+    return f"data point {dp} added. thanks" 
+
+@app.route('/dashboard')
+@login_required
+def dashboard():
+    homes = current_user.homes
+    return render_template('dashboard.html', user=current_user, homes=homes)
+
+@app.route('/home/<home_url>')
+@login_required
+def home(home_url):
+    current_home = Home.query.filter_by(url=home_url).first_or_404()
+    if not current_home.is_public() and current_home.owner != current_user:
+        abort(401)
+    devices = current_home.devices
+    return render_template('view_home.html', user=current_user, current_home=current_home, devices=devices)
+
+@app.route('/device/<device_id>')
+@login_required
+def device(device_id):
+    current_device = Device.query.filter_by(id=device_id).first()
+
+
+    entries = [val for val in current_device.get_all_entries()]
+    values = [val.format() for val in entries]
+
+    labels = [val.timestamp for val in entries]
+
+    if not current_device.home.is_public() and current_device.home.owner != current_user:
+        abort(401)
+    return render_template(
+        'view_device.html', 
+        user=current_user, 
+        current_device=current_device, 
+        title = f"{current_device.name} | {current_device.home.name}", 
+        max=17000, 
+        labels=labels, 
+        values=values
+    )

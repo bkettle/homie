@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+    <h1>Add a Device</h1>
+    <div class="row">
+        <div class="col-md-4">
+            {{ form.device_id() }}
+            {{ form.device_name() }}
+            {{ form.home() }}
+            {% for c in form.categories %}
+                {{ c.form.category_name }}
+                {{ c.form.color}}
+                {{ c.form.min_value }}
+                {{ c.form.max_value }}
+                {{ c.form.alert }}
+            {% endfor %}
+            {{ form.submit() }}
+        </div>
+    </div>
+{% endblock %}

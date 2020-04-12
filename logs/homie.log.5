@@ -1,0 +1,85 @@
+2019-08-07 20:44:02,243 ERROR: Exception on /device/1 [GET] [in c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py:1780]
+Traceback (most recent call last):
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1737, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\_compat.py", line 36, in reraise
+    raise value
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1818, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\bkettle\onedrive\documents\development\proj\homie\app\routes.py", line 142, in device
+    return render_template('view_device.html', user=current_user, current_device=current_device)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\templating.py", line 134, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\jinja2\environment.py", line 869, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\jinja2\environment.py", line 830, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\jinja2\environment.py", line 804, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\jinja2\loaders.py", line 113, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\templating.py", line 58, in get_source
+    return self._get_source_fast(environment, template)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\templating.py", line 86, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: view_device.html
+2019-08-07 20:46:03,717 INFO: Homie startup [in C:\Users\bkettle\onedrive\documents\development\proj\homie\app\__init__.py:51]
+2019-08-07 20:51:08,941 INFO: Homie startup [in C:\Users\bkettle\onedrive\documents\development\proj\homie\app\__init__.py:51]
+2019-08-07 20:51:13,784 ERROR: Exception on /dashboard [GET] [in c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py:1780]
+Traceback (most recent call last):
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1737, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\_compat.py", line 36, in reraise
+    raise value
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\app.py", line 1818, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\bkettle\onedrive\documents\development\proj\homie\app\routes.py", line 125, in dashboard
+    return render_template('dashboard.html', user=current_user, homes=homes)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\templating.py", line 135, in render_template
+    context, ctx.app)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\templating.py", line 117, in _render
+    rv = template.render(context)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\jinja2\environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\bkettle\onedrive\documents\development\proj\homie\app\templates\dashboard.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\bkettle\onedrive\documents\development\proj\homie\app\templates\base.html", line 2, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 4, in block "doc"
+    {%- block html %}
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 20, in block "html"
+    {% block body -%}
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 23, in block "body"
+    {% block content -%}
+  File "C:\Users\bkettle\onedrive\documents\development\proj\homie\app\templates\base.html", line 43, in block "content"
+    {% block app_content %}{% endblock %}
+  File "C:\Users\bkettle\onedrive\documents\development\proj\homie\app\templates\dashboard.html", line 9, in block "app_content"
+    <a href="{{ url_for(add_device) }}">Add a Device</a>
+  File "c:\users\bkettle\onedrive\documents\development\proj\homie\venv\lib\site-packages\flask\helpers.py", line 305, in url_for
+    if endpoint[:1] == '.':
+jinja2.exceptions.UndefinedError: 'add_device' is undefined
+2019-08-07 20:52:30,990 INFO: Homie startup [in C:\Users\bkettle\onedrive\documents\development\proj\homie\app\__init__.py:51]

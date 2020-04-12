@@ -1,7 +1,9 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, TextAreaField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, TextAreaField, BooleanField, SubmitField, SelectField, IntegerField
+from wtforms import FieldList, FormField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length
-from app.models import User
+from wtforms_components import ColorField
+from app.models import User, Home, Device
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
@@ -51,3 +53,42 @@ class ResetPasswordForm(FlaskForm):
     password2 = PasswordField(
         'Repeat Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Request Password Reset')
+
+class CreateHomeForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired()])
+    url = StringField('Home ID', validators=[DataRequired()])
+    is_public = BooleanField('Make Public?', validators=[DataRequired()])
+    submit = SubmitField('Create')
+
+    def __init__(self, current_user, *args, **kwargs):
+        super(CreateHomeForm, self).__init__(*args, **kwargs)
+        self.current_user = current_user
+
+    def validate_name(self, name):
+        home = Home.query.filter_by(owner=self.current_user).filter_by(name=name.data).first()
+        if home is not None:
+            raise ValidationError("Please call your home something else. You've already used this name.")
+
+    def validate_url(self, url):
+        home = Home.query.filter_by(url=url.data).first()
+        if home is not None:
+            raise ValidationError("Please choose a different URL, this one's taken.")
+
+class CategoryForm(FlaskForm):
+    category_name = StringField('Category Name', validators=[DataRequired()])
+    color = ColorField()
+    min_value = IntegerField('Minimum Value')
+    max_value = IntegerField('Maximum Value')
+    alert = BooleanField('Alert')
+
+class AddDeviceForm(FlaskForm):
+    device_id = StringField('Device ID', validators=[DataRequired()])
+    device_name = StringField('Device Name', validators=[DataRequired()])
+    home = SelectField("Select Home")
+    categories = FieldList(FormField(CategoryForm), min_entries=2)
+    submit = SubmitField('Add')
+
+    def validate_device_id(self, device_id):
+        device = Device.query.filter_by(id=device_id).first()
+        if device is None or device.home is not None:
+            raise ValidationError("This device isn't available. Please check your device ID or contact us.")

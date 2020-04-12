@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <table class="table table-hover">
+        <tr>
+            <td width="256px"><img src="{{ user.avatar(256) }}"></td>
+            <td>
+                <h1>Hi, {{ user.username }}</h1>
+                <a href="{{ url_for('add_device') }}">Add a Device</a>
+                <a href="{{ url_for('create_home') }}">Create a Home</a>
+            </td>
+        </tr>
+    </table>
+    {% for home in homes %}
+        {% include '_home.html' %}
+    {% endfor %}
+{% endblock %}

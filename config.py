@@ -14,5 +14,6 @@ class Config(object):
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
     ADMINS = ['theyellowtoaster@gmail.com']
+    ALERTS_FROM_ADDRESS = 'alerts@homie.io'
 
     POSTS_PER_PAGE = 3
